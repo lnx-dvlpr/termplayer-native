@@ -1,0 +1,14 @@
+#!/data/data/com.termux/files/usr/bin/bash
+source funtc.sh
+main() {
+	termux-media-player play "${diru}"
+	ls $(pwd) | grep -P ".mp3|.wav|.ogg|.opus|.flac|.m4a|.aac" > $PREFIX/etc/termplayer-native/lists
+	funtc
+}
+echo "Write directory:"
+read dirt
+cd $dirt
+while true; do
+export diru=$(ls -a | fzf --color=bw)
+cd "${diru}" || main
+done
